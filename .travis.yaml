@@ -21,7 +21,7 @@ deploy:
     verbose: true
     token: $GITHUB_TOKEN
     edge: true
-    local_dir: build/html/index.html
+    local_dir: ./build/html/
     keep_history: true
     
     
