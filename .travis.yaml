@@ -1,8 +1,27 @@
+language: python
+install:
+- pip install -r dev-requirements.txt
+script:
+- pytest --cov
+- make -C .
+- touch build/html/.nojekyll
+
+after_success:
+- coverage run --source=yadroTest -m pytest tests/
+- coveralls
+
 deploy:
-   provider: pages: git
-   skip_cleanup: true
-   github_token: $GITHUB_TOKEN
-   keep_history: true
-   local_dir: ./build/html/
-   on:
-      branch: master
+  - provider: pypi
+    user: "__token__"
+    password: $PYPI_TOKEN
+    skip_existing: true
+
+  - provider: pages:git
+    skip_cleanup: true
+    verbose: true
+    token: $GITHUB_TOKEN
+    edge: true
+    local_dir: ./build/html/
+    keep_history: true
+    
+    
