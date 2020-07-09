@@ -16,12 +16,11 @@ deploy:
     password: $PYPI_TOKEN
     skip_existing: true
 
-  - provider: pages:git
+  - provider: pages
     skip_cleanup: true
-    verbose: true
-    token: $GITHUB_TOKEN
-    edge: true
-    local_dir: ./build/html/
-    keep_history: true
+    github-token: $GITHUB_TOKEN
+    on:
+      branch: master
+    
     
     
